@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 import { FaTwitter, FaInstagram, FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa';
 import soumargha2 from '../Assets/soumargha2.jpg';
 import Bread from './Bread';
@@ -9,12 +10,46 @@ import Contact from "../jsx/Contact";
 import Footer from './Footer';
 
 const Hero = () => {
+  const imageControls = useAnimation();
+  const textControls = useAnimation();
+
+  useEffect(() => {
+    const animateSection = async () => {
+      await imageControls.start({
+        opacity: 1,
+        x: 0,
+        transition: { duration: 1 }
+      });
+      await textControls.start({
+        opacity: 1,
+        x: 0,
+        transition: { duration: 1 }
+      });
+    };
+    animateSection();
+  }, []);
+
   return (
     <>
-      <section className="mt-14 pt-10 rounded-3xl overflow-hidden bg-gradient-to-r from-blue-500 via-blue-800 to-gray-800 md:pt-0 sm:pt-16 2xl:pt-16">
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="mt-14 pt-10 rounded-3xl overflow-hidden bg-gradient-to-r from-blue-500 via-blue-800 to-gray-800 md:pt-0 sm:pt-16 2xl:pt-16"
+      >
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex flex-col md:flex-row items-center">
-            <div className="md:order-1 flex-grow">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={imageControls}
+              className="md:order-2 md:ml-6 mt-6 md:mt-0 relative"
+            >
+              <img className="w-full md:max-w-lg md:mx-auto rounded-2xl mb-3 2xl:origin-bottom 2xl:scale-110" src={soumargha2} alt="" />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={textControls}
+              className="md:order-1 flex-grow"
+            >
               <h2 className="text-3xl ml-[-2rem] font-bold leading-tight text-gray-50 sm:text-4xl lg:text-5xl">Hi 👋 I am
                 <br className="block sm:hidden" /> Soumargha Bhattacharjee
               </h2>
@@ -28,7 +63,6 @@ const Hero = () => {
                 </span>
                 <h2 className="block mt-4 font-bold sm:mt-0 sm:mr-20">Connect with me </h2>
                 <div className="flex mt-4 sm:mt-14 ml-4 sm:ml-48">
-                  {/* Add your social media links below with appropriate URLs */}
                   <a href="https://twitter.com/soum_argha" target="_blank" rel="noopener noreferrer">
                     <FaTwitter className="text-twitter text-4xl mr-4 hover:text-blue-400" />
                   </a>
@@ -46,13 +80,10 @@ const Hero = () => {
                   </a>
                 </div>
               </div>
-            </div>
-            <div className="md:order-2 md:ml-6 mt-6 md:mt-0 relative">
-              <img className="w-full md:max-w-lg md:mx-auto rounded-2xl mb-3 2xl:origin-bottom 2xl:scale-110" src={soumargha2} alt="" />
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
       <Bread />
       <Portfolio />
       <Internships />
