@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { FaTwitter, FaInstagram, FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa';
-import soumargha2 from '../Assets/soumargha2.jpg';
+import soumarghaphoto from '../Assets/soumarghaphoto.jpg'
 import Bread from './Bread';
 import Portfolio from '../jsx/Portfolio';
 import Internships from './Internships';
@@ -34,16 +33,17 @@ const Hero = () => {
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="mt-14 pt-10 rounded-3xl overflow-hidden bg-gradient-to-r from-blue-500 via-blue-800 to-gray-800 md:pt-0 sm:pt-16 2xl:pt-16"
+        className="mt-14 pt-10 rounded-3xl overflow-hidden bg-black md:pt-0 sm:pt-16 2xl:pt-16"
       >
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex flex-col md:flex-row items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={imageControls}
+              whileHover={{ scale: 1.1 }} // Add hover effect
               className="md:order-2 md:ml-6 mt-6 md:mt-0 relative"
             >
-              <img className="w-full md:max-w-lg md:mx-auto rounded-2xl mb-3 2xl:origin-bottom 2xl:scale-110" src={soumargha2} alt="" />
+              <img className="w-full  md:max-w-lg md:mx-auto rounded-2xl mb-3  2xl:origin-bottom 2xl:scale-110" src={soumarghaphoto} alt="" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -53,7 +53,7 @@ const Hero = () => {
               <h2 className="text-3xl ml-[-2rem] font-bold leading-tight text-gray-50 sm:text-4xl lg:text-5xl">Hi 👋 I am
                 <br className="block sm:hidden" /> Soumargha Bhattacharjee
               </h2>
-              <p className="max-w-lg mt-3 ml-4 sm:ml-14 text-xl leading-relaxed text-white md:mt-8">
+              <p className="max-w-lg mt-3 ml-4 sm:ml-14 text-xl italic leading-relaxed text-white md:mt-8">
                 Full stack developer and data analyst with internship experience in multiple companies. Currently pursuing BTech from the National Institute of Technology Agartala.
               </p>
               <div className="mt-4 text-xl text-white md:mt-8">
