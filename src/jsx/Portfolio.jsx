@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import blogs from '../Assets/blogs.jpg'
-import campusbuddy from '../Assets/campusbuddy.jpg'
-import flappyball from '../Assets/flappyball.jpg'
+import blogs from '../Assets/blogs.jpg';
+import campusbuddy from '../Assets/campusbuddy.jpg';
+import flappyball from '../Assets/flappyball.jpg';
 
 const Project = ({ imageSrc, title, description }) => {
   return (
@@ -43,12 +43,12 @@ const Portfolio = () => {
   }, [controls, inView]);
 
   return (
-    <div ref={ref}>
-      <h2 className="text-4xl  font-bold mt-14 mb-12 leading-tight text-gray-100 hover:text-green-500 sm:text-4xl lg:text-5xl">
+    <div id='projects-section' ref={ref}>
+      <h2 className="text-4xl  font-bold mt-14 mb-12 leading-tight text-gray-100 hover:text-green-500 sm:text-4xl lg:text-5xl ">
         <br className="block sm:hidden" /> Personal Projects
       </h2>
       <motion.div
-        className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto bg-gradient-to-r from-violet-950 via-violet-800 to-gray-950 hover:bg-gradient-to-br rounded-3xl"
+        className=" border-white border-4 max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto bg-gradient-to-r from-violet-950 via-violet-800 to-gray-950 hover:bg-gradient-to-br rounded-3xl"
         initial={{ x: '100%', opacity: 0 }} // Initial position from the right of the screen
         animate={controls}
       >

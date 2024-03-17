@@ -46,8 +46,8 @@ const Navbar = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-3xl mb-[-3rem] font-bold mt-36 leading-tight text-gray-100 hover:text-green-500 sm:text-4xl lg:text-5xl">
+    <div id="bread">
+      <h2 className="ml-5 text-3xl mb-[-3rem] font-bold mt-36 leading-tight text-gray-100 hover:text-green-500 sm:text-4xl lg:text-5xl">
         <br className="block sm:hidden" /> I am proficient in working with
       </h2>
       <section id="skills" className="bg-black mt-16 rounded-3xl dark:bg-dark lg:py-[120px] relative overflow-hidden">
@@ -62,7 +62,7 @@ const Navbar = () => {
                   <motion.a
                     key={index}
                     href="javascript:void(0)"
-                    className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]"
+                    className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]  "
                     initial={{ opacity: 0, x: 1000 }}
                     animate={controls}
                     custom={index}
@@ -76,7 +76,7 @@ const Navbar = () => {
                   <motion.a
                     key={index}
                     href="javascript:void(0)"
-                    className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]"
+                    className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]  "
                     initial={{ opacity: 0, x: 1000 }}
                     animate={controls}
                     custom={index + 3} // To stagger animation after first set
@@ -90,7 +90,7 @@ const Navbar = () => {
                 <motion.img
                   src={cpp}
                   alt="Image 1"
-                  className="mx-4 w-[140px] h-[140px] object-cover ml-10"
+                  className="mx-4 w-[140px] h-[140px] object-cover ml-10  "
                   initial={{ opacity: 0, x: 1000 }}
                   animate={controls}
                   custom={6} // Adjust delay for image animation
@@ -99,7 +99,7 @@ const Navbar = () => {
                 <motion.img
                   src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg"
                   alt="Image 2"
-                  className="mx-4 w-[140px] h-[140px] object-cover ml-10"
+                  className="mx-4 w-[140px] h-[140px] object-cover ml-10  "
                   initial={{ opacity: 0, x: 1000 }}
                   animate={controls}
                   custom={7} // Adjust delay for image animation
@@ -108,7 +108,7 @@ const Navbar = () => {
                 <motion.img
                   src="https://cdn-icons-png.flaticon.com/512/5968/5968342.png"
                   alt="Image 3"
-                  className="mx-4 w-[140px] h-[140px] object-cover ml-10"
+                  className="mx-4 w-[140px] h-[140px] object-cover ml-10  "
                   initial={{ opacity: 0, x: 1000 }}
                   animate={controls}
                   custom={8} // Adjust delay for image animation
