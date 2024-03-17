@@ -1,30 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHtml5, faCss3, faJs, faReact, faNodeJs, faPython } from '@fortawesome/free-brands-svg-icons';
 import cpp from '../Assets/cpp.png';
 
 const Navbar = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const controls = useAnimation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const distanceFromTop = window.scrollY + window.innerHeight;
-      const sectionBottom = document.getElementById('skills').offsetTop;
-
-      if (distanceFromTop >= sectionBottom) {
-        controls.start(i => ({
-          opacity: 1,
-          x: 0,
-          transition: { delay: i * 0.2, duration: 1 }
-        }));
-      }
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust threshold for mobile screens
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Call the function initially
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [controls]);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) {
+      const handleScroll = () => {
+        const distanceFromTop = window.scrollY + window.innerHeight;
+        const sectionBottom = document.getElementById('skills').offsetTop;
+
+        if (distanceFromTop >= sectionBottom) {
+          controls.start(i => ({
+            opacity: 1,
+            x: 0,
+            transition: { delay: i * 0.2, duration: 1 }
+          }));
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [isMobile, controls]);
 
   const getColor = (icon) => {
     switch (icon) {
@@ -59,60 +73,63 @@ const Navbar = () => {
             <div className="w-full px-4">
               <div className="flex flex-wrap items-center justify-center">
                 {[faHtml5, faCss3, faJs].map((icon, index) => (
-                  <motion.a
+                  <a
                     key={index}
                     href="javascript:void(0)"
-                    className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]  "
-                    initial={{ opacity: 0, x: 1000 }}
-                    animate={controls}
-                    custom={index}
+                    className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]"
                   >
-                    <FontAwesomeIcon icon={icon} className={`text-8xl ${getColor(icon)}`} />
-                  </motion.a>
+                    <motion.div
+                      initial={{ opacity: 0, x: 1000 }}
+                      animate={controls}
+                      custom={index}
+                    >
+                      <FontAwesomeIcon icon={icon} className={`text-8xl ${getColor(icon)}`} />
+                    </motion.div>
+                  </a>
                 ))}
               </div>
               <div className="flex flex-wrap items-center justify-center mt-4">
                 {[faReact, faNodeJs, faPython].map((icon, index) => (
-                  <motion.a
+                  <a
                     key={index}
                     href="javascript:void(0)"
-                    className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]  "
-                    initial={{ opacity: 0, x: 1000 }}
-                    animate={controls}
-                    custom={index + 3} // To stagger animation after first set
+                    className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]"
                   >
-                    <FontAwesomeIcon icon={icon} className={`text-8xl ${getColor(icon)}`} />
-                  </motion.a>
+                    <motion.div
+                      initial={{ opacity: 0, x: 1000 }}
+                      animate={controls}
+                      custom={index + 3}
+                    >
+                      <FontAwesomeIcon icon={icon} className={`text-8xl ${getColor(icon)}`} />
+                    </motion.div>
+                  </a>
                 ))}
               </div>
               <div className="flex flex-wrap items-center justify-center mt-5">
-                {/* Add images in each box */}
                 <motion.img
                   src={cpp}
                   alt="Image 1"
-                  className="mx-4 w-[140px] h-[140px] object-cover ml-10  "
+                  className="mx-4 w-[140px] h-[140px] object-cover ml-10"
                   initial={{ opacity: 0, x: 1000 }}
                   animate={controls}
-                  custom={6} // Adjust delay for image animation
+                  custom={6}
                 />
-                {/* Add other images with similar motion properties */}
+                {/* Render the other images with motion animation */}
                 <motion.img
                   src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg"
                   alt="Image 2"
-                  className="mx-4 w-[140px] h-[140px] object-cover ml-10  "
+                  className="mx-4 w-[140px] h-[140px] object-cover ml-10"
                   initial={{ opacity: 0, x: 1000 }}
                   animate={controls}
-                  custom={7} // Adjust delay for image animation
+                  custom={7}
                 />
-                {/* Add other images with similar motion properties */}
                 <motion.img
                   src="https://cdn-icons-png.flaticon.com/512/5968/5968342.png"
                   alt="Image 3"
-                  className="mx-4 w-[140px] h-[140px] object-cover ml-10  "
+                  className="mx-4 w-[140px] h-[140px] object-cover ml-10"
                   initial={{ opacity: 0, x: 1000 }}
                   animate={controls}
-                  custom={8} // Adjust delay for image animation
-                  style={{ zIndex: 1 }} // Ensure the third image is above other elements
+                  custom={8}
                 />
               </div>
             </div>
