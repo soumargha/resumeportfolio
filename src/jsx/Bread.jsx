@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHtml5,
@@ -13,7 +12,6 @@ import cpp from "../Assets/cpp.png";
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const controls = useAnimation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,27 +23,6 @@ const Navbar = () => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  useEffect(() => {
-    if (!isMobile) {
-      const handleScroll = () => {
-        const distanceFromTop = window.scrollY + window.innerHeight;
-        const sectionBottom = document.getElementById("skills").offsetTop;
-
-        if (distanceFromTop >= sectionBottom) {
-          controls.start((i) => ({
-            opacity: 1,
-            x: 0,
-            transition: { delay: i * 0.2, duration: 1 },
-          }));
-        }
-      };
-
-      window.addEventListener("scroll", handleScroll);
-
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
-  }, [isMobile, controls]);
 
   const getColor = (icon) => {
     switch (icon) {
@@ -88,16 +65,10 @@ const Navbar = () => {
                     href="javascript:void(0)"
                     className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]"
                   >
-                    <motion.div
-                      initial={{ opacity: 0, x: 1000 }}
-                      animate={controls}
-                      custom={index}
-                    >
-                      <FontAwesomeIcon
-                        icon={icon}
-                        className={`text-8xl ${getColor(icon)}`}
-                      />
-                    </motion.div>
+                    <FontAwesomeIcon
+                      icon={icon}
+                      className={`text-8xl ${getColor(icon)}`}
+                    />
                   </a>
                 ))}
               </div>
@@ -108,63 +79,48 @@ const Navbar = () => {
                     href="javascript:void(0)"
                     className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]"
                   >
-                    <motion.div
-                      initial={{ opacity: 0, x: 1000 }}
-                      animate={controls}
-                      custom={index + 3}
-                    >
-                      <FontAwesomeIcon
-                        icon={icon}
-                        className={`text-8xl ${getColor(icon)}`}
-                      />
-                    </motion.div>
+                    <FontAwesomeIcon
+                      icon={icon}
+                      className={`text-8xl ${getColor(icon)}`}
+                    />
                   </a>
                 ))}
               </div>
               <div className="flex flex-wrap items-center justify-center mt-5">
-                <motion.img
+                <img
                   src={cpp}
                   alt="Image 1"
                   className="mx-4 w-[140px] h-[140px] object-cover ml-10"
-                  initial={{ opacity: 0, x: 1000 }}
-                  animate={controls}
-                  custom={6}
                 />
-                {/* Render the other images with motion animation */}
-                <motion.img
+                {/* Render the other images */}
+                <img
                   src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg"
                   alt="Image 2"
                   className="mx-4 w-[140px] h-[140px] object-cover ml-10"
-                  initial={{ opacity: 0, x: 1000 }}
-                  animate={controls}
-                  custom={7}
                 />
-                <motion.img
+                <img
                   src="https://cdn-icons-png.flaticon.com/512/5968/5968342.png"
                   alt="Image 3"
                   className="mx-4 w-[140px] h-[140px] object-cover ml-10"
-                  initial={{ opacity: 0, x: 1000 }}
-                  animate={controls}
-                  custom={8}
                 />
               </div>
             </div>
           </div>
           <button
-  onClick={() => window.open("https://drive.google.com/file/d/1aoavn6yRT1H2sCdmOzAX5F7kqxQfpHoa/view?usp=sharing", "_blank")}
-  className="ml-8 mt-14 relative inline-block text-lg group"
->
-  <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-900 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
-    <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-teal-500"></span>
-    <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-teal-900 group-hover:-rotate-200 ease"></span>
-    <span className="relative">Download Resume</span>
-  </span>
-  <span
-    className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-lime-500 rounded-lg group-hover:mb-0 group-hover:mr-0"
-    data-rounded="rounded-lg"
-  ></span>
-</button>
-
+            onClick={() =>
+              window.open("https://drive.google.com/file/d/1aoavn6yRT1H2sCdmOzAX5F7kqxQfpHoa/view?usp=sharing", "_blank")}
+            className="ml-8 mt-14 relative inline-block text-lg group"
+          >
+            <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-900 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
+              <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-teal-500"></span>
+              <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-teal-900 group-hover:-rotate-200 ease"></span>
+              <span className="relative">Download Resume</span>
+            </span>
+            <span
+              className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-lime-500 rounded-lg group-hover:mb-0 group-hover:mr-0"
+              data-rounded="rounded-lg"
+            ></span>
+          </button>
         </div>
       </section>
     </div>
