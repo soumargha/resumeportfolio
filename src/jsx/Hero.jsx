@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { FaTwitter, FaInstagram, FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa';
 import soumarghaphoto from '../Assets/soumarghaphoto.jpg'
@@ -10,6 +10,7 @@ import Footer from './Footer';
 import Quote from './Quote';
 
 const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const imageControls = useAnimation();
   const textControls = useAnimation();
 
@@ -29,6 +30,17 @@ const Hero = () => {
     animateSection();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <>
       <motion.section
@@ -38,7 +50,7 @@ const Hero = () => {
       >
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex flex-col md:flex-row items-center">
-            <motion.div
+          <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={imageControls}
               whileHover={{ scale: 1.1 }} // Add hover effect
@@ -54,7 +66,7 @@ const Hero = () => {
               <h2 className="text-3xl ml-[-2rem] font-bold leading-tight text-gray-50 sm:text-4xl lg:text-5xl">Hi 👋 I am
                 <br className="block sm:hidden" /> Soumargha Bhattacharjee
               </h2>
-              <p className=" max-w-lg mt-9  ml-4 sm:ml-14 text-xl italic leading-relaxed text-white md:mt-8">
+              <p className="max-w-lg mt-9  ml-4 sm:ml-14 text-xl italic leading-relaxed text-white md:mt-8">
                 Full stack developer and data analyst with internship experience in multiple companies. Currently pursuing BTech from the National Institute of Technology Agartala.
               </p>
               <div className="mt-4 text-xl text-white md:mt-8">
@@ -91,7 +103,6 @@ const Hero = () => {
       <Contact />
       <Quote/>
       <Footer />
-      
     </>
   );
 };

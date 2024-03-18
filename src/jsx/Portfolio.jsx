@@ -5,9 +5,9 @@ import blogs from '../Assets/blogs.jpg';
 import campusbuddy from '../Assets/campusbuddy.jpg';
 import flappyball from '../Assets/flappyball.jpg';
 
-const Project = ({ imageSrc, title, description }) => {
+const Project = ({ imageSrc, title, description, link }) => {
   return (
-    <a className="group rounded-xl overflow-hidden dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
+    <a className="group rounded-xl overflow-hidden dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href={link} target="_blank" rel="noopener noreferrer">
       <div className="sm:flex">
         <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full sm:w-56 h-44">
           <img className="group-hover:scale-105 transition-transform duration-500 ease-in-out size-full absolute top-0 start-0 object-cover rounded-xl" src={imageSrc} alt={title} />
@@ -43,12 +43,12 @@ const Portfolio = () => {
   }, [controls, inView]);
 
   return (
-    <div id='projects-section' ref={ref}>
+    <div id='projects-section' className='' ref={ref}>
       <h2 className="text-4xl  font-bold mt-14 mb-12 leading-tight text-gray-100 hover:text-green-500 sm:text-4xl lg:text-5xl ">
         <br className="block sm:hidden" /> Personal Projects
       </h2>
       <motion.div
-        className=" border-white border-4 max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto bg-gradient-to-r from-violet-950 via-violet-800 to-gray-950 hover:bg-gradient-to-br rounded-3xl"
+        className=" border-violet-500 border-4 max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto bg-gradient-to-r from-violet-950 via-violet-800 to-violet-950 hover:bg-gradient-to-br rounded-3xl"
         initial={{ x: '100%', opacity: 0 }} // Initial position from the right of the screen
         animate={controls}
       >
@@ -57,7 +57,9 @@ const Portfolio = () => {
             <Project
               imageSrc={blogs}
               title="Personal Blog"
-              description="Produce professional, reliable streams easily leveraging Preline's innovative broadcast studio"
+              description=" My personal Blogging site.
+               Created using JSX, TailwindCSS, Firebase, Framer Motion."
+              link="https://personalblogsb.netlify.app/"
             />
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.5, delay: 0.4 }}>
@@ -65,6 +67,7 @@ const Portfolio = () => {
               imageSrc={campusbuddy}
               title="Campus Buddy"
               description="Optimize your in-person experience with best-in-class capabilities like badge printing and lead retrieval"
+              link="https://axios-buy-sell-platform.vercel.app/"
             />
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.5, delay: 0.6 }}>
@@ -72,6 +75,7 @@ const Portfolio = () => {
               imageSrc="https://media.istockphoto.com/id/1224339648/photo/portfolio-website-on-home-office-setup.webp?b=1&s=170667a&w=0&k=20&c=MGmNZmgjVBiAjVFN0z7io5nHZ_ygejxsFHz-mSkPL2w="
               title="Portfolio"
               description="How to make objectives and key results work for your company"
+              link="https://resumeportfolio.vercel.app/"
             />
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.5, delay: 0.8 }}>
@@ -79,6 +83,7 @@ const Portfolio = () => {
               imageSrc={flappyball}
               title="Flappy ball"
               description="Six approaches to bringing your People strategy to life"
+              link="https://resumeportfolio.vercel.app/"
             />
           </motion.div>
         </div>
