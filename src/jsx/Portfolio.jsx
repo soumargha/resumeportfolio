@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -9,7 +10,7 @@ const Project = ({ imageSrc, title, description, link }) => {
   return (
     <a className="group rounded-xl overflow-hidden dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href={link} target="_blank" rel="noopener noreferrer">
       <div className="sm:flex">
-        <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full sm:w-56 h-44">
+        <div className="flex-shrink-0 relative rounded-2xl overflow-hidden w-full sm:w-56 h-44 border-4 border-violet-500">
           <img className="group-hover:scale-105 transition-transform duration-500 ease-in-out size-full absolute top-0 start-0 object-cover rounded-xl" src={imageSrc} alt={title} />
         </div>
         <div className="grow mt-4 sm:mt-0 sm:ms-6 px-4 sm:px-0">
@@ -27,6 +28,8 @@ const Project = ({ imageSrc, title, description, link }) => {
     </a>
   );
 };
+
+
 
 const Portfolio = () => {
   const controls = useAnimation();
@@ -57,16 +60,18 @@ const Portfolio = () => {
             <Project
               imageSrc={blogs}
               title="Personal Blog"
-              description=" My personal Blogging site.
+              description=" My personal Blogging site where I express thoughts and ideas through code and design.
                Created using JSX, TailwindCSS, Firebase, Framer Motion."
               link="https://personalblogsb.netlify.app/"
+              
             />
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.5, delay: 0.4 }}>
             <Project
               imageSrc={campusbuddy}
               title="Campus Buddy"
-              description="Optimize your in-person experience with best-in-class capabilities like badge printing and lead retrieval"
+              description="A one stop solution for buying, selling and renting services inside a college campus.
+               Technology Used: TailWindcss, jsx, React Icon, framer motion."
               link="https://axios-buy-sell-platform.vercel.app/"
             />
           </motion.div>
@@ -74,7 +79,8 @@ const Portfolio = () => {
             <Project
               imageSrc="https://media.istockphoto.com/id/1224339648/photo/portfolio-website-on-home-office-setup.webp?b=1&s=170667a&w=0&k=20&c=MGmNZmgjVBiAjVFN0z7io5nHZ_ygejxsFHz-mSkPL2w="
               title="Portfolio"
-              description="How to make objectives and key results work for your company"
+              description="Explore a curated collection of my projects, crafted with precision and boundless imagination.
+              Created using: jsx, Tailwind css, framer motion , scss , Firebase."
               link="https://resumeportfolio.vercel.app/"
             />
           </motion.div>
@@ -82,8 +88,9 @@ const Portfolio = () => {
             <Project
               imageSrc={flappyball}
               title="Flappy ball"
-              description="Six approaches to bringing your People strategy to life"
-              link="https://resumeportfolio.vercel.app/"
+              description="An old and gold game that challenges your resolve and provides an antidote to monotony.
+              Created using: HTML, CSS and Javascript."
+              link="https://flappjazz.netlify.app/"
             />
           </motion.div>
         </div>

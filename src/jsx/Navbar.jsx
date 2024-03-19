@@ -36,7 +36,7 @@ const Navbar = () => {
     <nav>
       {/* Scroll bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 z-50 h-1 bg-red-500"
+        className="fixed top-0 left-0 right-0 z-50 h-1 bg-yellow-500"
         style={{ width }}
         initial="hidden"
         animate="visible"

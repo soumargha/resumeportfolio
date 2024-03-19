@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion"; // Import motion from Framer Motion
 import {
   faHtml5,
   faCss3,
@@ -60,55 +61,67 @@ const Navbar = () => {
             <div className="w-full px-4">
               <div className="flex flex-wrap items-center justify-center">
                 {[faHtml5, faCss3, faJs].map((icon, index) => (
-                  <a
+                  <motion.div // Wrap with motion.div
                     key={index}
-                    href="javascript:void(0)"
+                    initial={{ x: -1000 }} // Initial position (off-screen)
+                    animate={{ x: 0 }} // Final position (on-screen)
+                    transition={{ delay: index * 0.2, duration: 1 }} // Delay for staggered effect and duration for slower speed
                     className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]"
                   >
                     <FontAwesomeIcon
                       icon={icon}
                       className={`text-8xl ${getColor(icon)}`}
                     />
-                  </a>
+                  </motion.div>
                 ))}
               </div>
               <div className="flex flex-wrap items-center justify-center mt-4">
                 {[faReact, faNodeJs, faPython].map((icon, index) => (
-                  <a
+                  <motion.div // Wrap with motion.div
                     key={index}
-                    href="javascript:void(0)"
+                    initial={{ x: -1000 }} // Initial position (off-screen)
+                    animate={{ x: 0 }} // Final position (on-screen)
+                    transition={{ delay: index * 0.2, duration: 1 }} // Delay for staggered effect and duration for slower speed
                     className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]"
                   >
                     <FontAwesomeIcon
                       icon={icon}
                       className={`text-8xl ${getColor(icon)}`}
                     />
-                  </a>
+                  </motion.div>
                 ))}
               </div>
               <div className="flex flex-wrap items-center justify-center mt-5">
-                <img
-                  src={cpp}
-                  alt="Image 1"
+                <motion.div // Wrap with motion.div
+                  initial={{ x: -1000 }} // Initial position (off-screen)
+                  animate={{ x: 0 }} // Final position (on-screen)
+                  transition={{ delay: 0.6, duration: 1 }} // Delay for staggered effect and duration for slower speed
                   className="mx-4 w-[140px] h-[140px] object-cover ml-10"
-                />
+                >
+                  <img src={cpp} alt="Image 1" />
+                </motion.div>
                 {/* Render the other images */}
-                <img
-                  src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg"
-                  alt="Image 2"
+                <motion.div // Wrap with motion.div
+                  initial={{ x: -1000 }} // Initial position (off-screen)
+                  animate={{ x: 0 }} // Final position (on-screen)
+                  transition={{ delay: 0.6, duration: 1 }} // Delay for staggered effect and duration for slower speed
                   className="mx-4 w-[140px] h-[140px] object-cover ml-10"
-                />
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/5968/5968342.png"
-                  alt="Image 3"
+                >
+                  <img src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg" alt="Image 2" />
+                </motion.div>
+                <motion.div // Wrap with motion.div
+                  initial={{ x: -1000 }} // Initial position (off-screen)
+                  animate={{ x: 0 }} // Final position (on-screen)
+                  transition={{ delay: 0.6, duration: 1 }} // Delay for staggered effect and duration for slower speed
                   className="mx-4 w-[140px] h-[140px] object-cover ml-10"
-                />
+                >
+                  <img src="https://cdn-icons-png.flaticon.com/512/5968/5968342.png" alt="Image 3" />
+                </motion.div>
               </div>
             </div>
           </div>
           <button
-            onClick={() =>
-              window.open("https://drive.google.com/file/d/1aoavn6yRT1H2sCdmOzAX5F7kqxQfpHoa/view?usp=sharing", "_blank")}
+            onClick={() => window.open("https://drive.google.com/file/d/1aoavn6yRT1H2sCdmOzAX5F7kqxQfpHoa/view?usp=sharing", "_blank")}
             className="ml-8 mt-14 relative inline-block text-lg group"
           >
             <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-900 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
