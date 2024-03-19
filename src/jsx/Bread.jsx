@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion } from "framer-motion"; // Import motion from Framer Motion
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import {
   faHtml5,
   faCss3,
@@ -13,14 +14,18 @@ import cpp from "../Assets/cpp.png";
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Adjust threshold for mobile screens
+      setIsMobile(window.innerWidth <= 768);
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Call the function initially
+    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -53,19 +58,18 @@ const Navbar = () => {
         id="skills"
         className="bg-black mt-14 rounded-3xl dark:bg-dark lg:py-[120px] relative overflow-hidden"
       >
-        {/* Background blur effect */}
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="absolute inset-0 bg-black"></div>
-        <div className="container mx-auto relative z-10">
+        <div className="container mx-auto relative z-10" ref={ref}>
           <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4">
               <div className="flex flex-wrap items-center justify-center">
                 {[faHtml5, faCss3, faJs].map((icon, index) => (
-                  <motion.div // Wrap with motion.div
+                  <motion.div
                     key={index}
-                    initial={{ x: -1000 }} // Initial position (off-screen)
-                    animate={{ x: 0 }} // Final position (on-screen)
-                    transition={{ delay: index * 0.2, duration: 1 }} // Delay for staggered effect and duration for slower speed
+                    initial={inView ? { x: -1000 } : { x: 0 }}
+                    animate={inView ? { x: 0 } : { x: -1000 }}
+                    transition={{ delay: index * 0.2, duration: 1 }}
                     className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]"
                   >
                     <FontAwesomeIcon
@@ -77,11 +81,11 @@ const Navbar = () => {
               </div>
               <div className="flex flex-wrap items-center justify-center mt-4">
                 {[faReact, faNodeJs, faPython].map((icon, index) => (
-                  <motion.div // Wrap with motion.div
+                  <motion.div
                     key={index}
-                    initial={{ x: -1000 }} // Initial position (off-screen)
-                    animate={{ x: 0 }} // Final position (on-screen)
-                    transition={{ delay: index * 0.2, duration: 1 }} // Delay for staggered effect and duration for slower speed
+                    initial={inView ? { x: -1000 } : { x: 0 }}
+                    animate={inView ? { x: 0 } : { x: -1000 }}
+                    transition={{ delay: index * 0.2, duration: 1 }}
                     className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]"
                   >
                     <FontAwesomeIcon
@@ -92,27 +96,26 @@ const Navbar = () => {
                 ))}
               </div>
               <div className="flex flex-wrap items-center justify-center mt-5">
-                <motion.div // Wrap with motion.div
-                  initial={{ x: -1000 }} // Initial position (off-screen)
-                  animate={{ x: 0 }} // Final position (on-screen)
-                  transition={{ delay: 0.6, duration: 1 }} // Delay for staggered effect and duration for slower speed
+                <motion.div
+                  initial={inView ? { x: -1000 } : { x: 0 }}
+                  animate={inView ? { x: 0 } : { x: -1000 }}
+                  transition={{ delay: 0.6, duration: 1 }}
                   className="mx-4 w-[140px] h-[140px] object-cover ml-10"
                 >
                   <img src={cpp} alt="Image 1" />
                 </motion.div>
-                {/* Render the other images */}
-                <motion.div // Wrap with motion.div
-                  initial={{ x: -1000 }} // Initial position (off-screen)
-                  animate={{ x: 0 }} // Final position (on-screen)
-                  transition={{ delay: 0.6, duration: 1 }} // Delay for staggered effect and duration for slower speed
+                <motion.div
+                  initial={inView ? { x: -1000 } : { x: 0 }}
+                  animate={inView ? { x: 0 } : { x: -1000 }}
+                  transition={{ delay: 0.6, duration: 1 }}
                   className="mx-4 w-[140px] h-[140px] object-cover ml-10"
                 >
                   <img src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg" alt="Image 2" />
                 </motion.div>
-                <motion.div // Wrap with motion.div
-                  initial={{ x: -1000 }} // Initial position (off-screen)
-                  animate={{ x: 0 }} // Final position (on-screen)
-                  transition={{ delay: 0.6, duration: 1 }} // Delay for staggered effect and duration for slower speed
+                <motion.div
+                  initial={inView ? { x: -1000 } : { x: 0 }}
+                  animate={inView ? { x: 0 } : { x: -1000 }}
+                  transition={{ delay: 0.6, duration: 1 }}
                   className="mx-4 w-[140px] h-[140px] object-cover ml-10"
                 >
                   <img src="https://cdn-icons-png.flaticon.com/512/5968/5968342.png" alt="Image 3" />
