@@ -8,7 +8,7 @@ import flappyball from '../Assets/flappyball.jpg';
 
 const Project = ({ imageSrc, title, description, link }) => {
   return (
-    <a className="group rounded-xl overflow-hidden dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href={link} target="_blank" rel="noopener noreferrer">
+    <a id='portfolio' className="group rounded-xl overflow-hidden dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href={link} target="_blank" rel="noopener noreferrer">
       <div className="sm:flex">
         <div className="flex-shrink-0 relative rounded-2xl overflow-hidden w-full sm:w-56 h-44 border-4 border-violet-500">
           <img className="group-hover:scale-105 transition-transform duration-500 ease-in-out size-full absolute top-0 start-0 object-cover rounded-xl" src={imageSrc} alt={title} />

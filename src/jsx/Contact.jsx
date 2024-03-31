@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 
+
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
   const controls = useAnimation();
 
   useEffect(() => {
     const handleScroll = () => {
-      const contactSection = document.getElementById("contact-section");
+      const contactSection = document.getElementById("bread");
       if (contactSection) {
         const scrollPosition = window.scrollY + window.innerHeight;
         const contactSectionPosition = contactSection.offsetTop;
@@ -55,37 +56,36 @@ const Contact = () => {
   const submitData = async (event) => {
     event.preventDefault();
     const { Name, Email, Subject, Message } = userData;
-    if(Name && Email && Subject && Message) {
-
-   
-    const res = await fetch(
-      "https://portfolio-39a04-default-rtdb.asia-southeast1.firebasedatabase.app/userDataRecord.json",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Name, Email, Subject, Message
-        })
+    if (Name && Email && Subject && Message) {
+      const res = await fetch(
+        "https://portfolio-39a04-default-rtdb.asia-southeast1.firebasedatabase.app/userDataRecord.json",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Name,
+            Email,
+            Subject,
+            Message,
+          }),
+        }
+      );
+      if (res) {
+        setUserData({
+          Name: "",
+          Email: "",
+          Subject: "",
+          Message: "",
+        });
+        alert("Message Sent");
+      } else {
+        alert("Please fill the data");
       }
-      
-    );
-    if(res){
-      setUserData({
-    Name: "",
-    Email: "",
-    Subject: "",
-    Message: "",
-      })
-      alert("Message Sent");
-    }else{
+    } else {
       alert("Please fill the data");
     }
-  }
-  else{
-    alert("Please fill the data");
-   }
   };
 
   return (
@@ -167,11 +167,31 @@ const Contact = () => {
       </div>
 
       {/* Back-to-top button */}
+      {isVisible && (
+        <button
+          id="to-top-button"
+          onClick={goToTop}
+          title="Go To Top"
+          className="fixed z-50 bottom-10 right-10 p-4 border-0 w-14 h-14 rounded-full shadow-md bg-teal-600 hover:bg-teal-700 text-white text-lg font-semibold transition-colors duration-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-6 h-6"
+          >
+            <path d="M12 4l8 8h-6v8h-4v-8H4l8-8z" />
+          </svg>
+          <span className="sr-only">Go to top</span>
+        </button>
+      )}
+      
+      {/* Scroll-to-top button */}
       <button
         id="to-top-button"
         onClick={goToTop}
         title="Go To Top"
-        className="hidden fixed z-50 bottom-10 right-10 p-4 border-0 w-14 h-14 rounded-full shadow-md bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold transition-colors duration-300"
+        className="hidden fixed z-50 bottom-10 right-10 p-4 border-0 w-14 h-14 rounded-full shadow-md bg-teal-600 hover:bg-teal-700 text-white text-lg font-semibold transition-colors duration-300"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
